@@ -38,6 +38,10 @@ body.map((quetsion) => {
   questionIndexArr.push(quetsionIndex);
 });
 
+console.log("选项英文", optionsArr);
+console.log("选项中文", optionsArrChinese);
+console.log("正确答案", correctAnswerArr);
+console.log("题目编号", questionIndexArr);
 //文章的简介
 passageAbstract = body[0].material?.accessories[1].content?.replace(
   regQuetsionText,
@@ -51,6 +55,7 @@ importantWord = importantWord.split("\n").filter((item) => {
   return item;
 });
 
+//题干就是题号，听力只有题号，题干没有英文，题干没有中文(废弃，等同于quetsionIndex)
 // fs.writeFile(
 //   "./output/题干英文.txt",
 //   JSON.stringify(quetsionEnglishArr),
@@ -69,42 +74,42 @@ importantWord = importantWord.split("\n").filter((item) => {
 //     }
 //   }
 // );
-// fs.writeFile(
-//   "./output/题目选项英文.txt",
-//   JSON.stringify(optionsArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/题目选项中文.txt",
-//   JSON.stringify(optionsArrChinese),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/正确答案.txt",
-//   JSON.stringify(correctAnswerArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/题目编号.txt",
-//   JSON.stringify(questionIndexArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
+fs.writeFile(
+  "./output/题目选项英文.txt",
+  JSON.stringify(optionsArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/题目选项中文.txt",
+  JSON.stringify(optionsArrChinese),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/正确答案.txt",
+  JSON.stringify(correctAnswerArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/题目编号.txt",
+  JSON.stringify(questionIndexArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
 // fs.writeFile(
 //   "./output/文章简介（材料分析）.txt",
 //   JSON.stringify(passageAbstract),

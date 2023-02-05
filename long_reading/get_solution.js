@@ -9,19 +9,17 @@ var body = data;
 body = JSON.parse(body);
 
 let solutionArr = []; //题目解析
-let interferenceOption = []; //干扰项分析
 
 let regQuetsionText = /\[\/*p\]/g;
 
 body.map((quetsion) => {
-  let solution = quetsion.solution.replace(regQuetsionText, "");
-  let interference = quetsion.solutionAccessories[0]?.content.replace(
-    regQuetsionText,
-    ""
-  );
+  // let solution = quetsion.solution.replace(regQuetsionText, "");
+  // let interference = quetsion.solutionAccessories[0]?.content.replace(
+  //   regQuetsionText,
+  //   ""
+  // );
 
-  solutionArr.push(solution);
-  interferenceOption.push(interference);
+  solutionArr.push(quetsion.solution);
 });
 
 //把[u]换成<u>,把[/u]换成</u>
@@ -37,20 +35,9 @@ solutionArr = solutionArr.map((item) => {
 });
 
 // console.log("solution数组", solutionArr);
-// console.log("干扰项数组", interferenceOption);
 fs.writeFile(
   "./output/题目解析.txt",
   JSON.stringify(solutionArr),
-  function (err) {
-    if (err) {
-      return console.error(err);
-    }
-  }
-);
-
-fs.writeFile(
-  "./output/干扰项解析.txt",
-  JSON.stringify(interferenceOption),
   function (err) {
     if (err) {
       return console.error(err);

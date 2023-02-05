@@ -10,18 +10,24 @@ body = JSON.parse(body);
 
 let solutionArr = []; //题目解析
 let interferenceOption = []; //干扰项分析
+let tydzArr = []; //听音重点
 
 let regQuetsionText = /\[\/*p\]/g;
 
 body.map((quetsion) => {
   let solution = quetsion.solution.replace(regQuetsionText, "");
-  let interference = quetsion.solutionAccessories[0]?.content.replace(
+  let tyzd = quetsion.solutionAccessories[0]?.content.replace(
+    regQuetsionText,
+    ""
+  );
+  let interference = quetsion.solutionAccessories[1]?.content.replace(
     regQuetsionText,
     ""
   );
 
   solutionArr.push(solution);
   interferenceOption.push(interference);
+  tydzArr.push(tyzd);
 });
 
 //把[u]换成<u>,把[/u]换成</u>
@@ -57,3 +63,9 @@ fs.writeFile(
     }
   }
 );
+
+fs.writeFile("./output/听音重点.txt", JSON.stringify(tydzArr), function (err) {
+  if (err) {
+    return console.error(err);
+  }
+});

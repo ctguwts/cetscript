@@ -1,9 +1,9 @@
 var rf = require("fs");
 var fs = require("fs");
 var data = rf.readFileSync("./input/question.txt", "utf-8");
-var person = data.toString(); //将二进制的数据转换为字符串
-var dataJson = JSON.parse(person); //将字符串转换为json对象
-var body = dataJson[0]?.res?.body;
+// var person = data.toString(); //将二进制的数据转换为字符串
+// var dataJson = JSON.parse(person); //将字符串转换为json对象
+var body = data;
 
 //原body是字符串，需要转化为数组
 body = JSON.parse(body);
@@ -35,7 +35,10 @@ body.map((quetsion) => {
     );
   }
 
-  let quetsionText = quetsionTextRaw.replace(regQuetsionText, "");
+  let quetsionText = quetsionTextRaw
+    .replace(regQuetsionText, "")
+    .replace(/\[i\]/g, "<i>")
+    .replace(/\[\/i\]/g, "</i>");
   let questionChinese = questionChineseRaw.replace(regQuetsionText, "");
 
   quetsionEnglishArr.push(quetsionText);
@@ -178,8 +181,8 @@ const getEnglishText = (rawText) => {
     return item.split("[trans]")?.[1];
   });
 
-  //把中文里的[u] [/u] [/trans] (51)全部去掉
-  let regUTransBrackets = /(\[(\/)*u\])|(\[\/trans\])|(（\d*）)/g;
+  //把中文里的[u] [/u] [/trans] (51) (51-2)全部去掉
+  let regUTransBrackets = /(\[(\/)*u\])|(\[\/trans\])|(（\d*\-*\d*）)/g;
   let paragraphChineseWithoutBrackets = paragraphChineseRaw.map((item) => {
     if (item) return item.replace(regUTransBrackets, "");
   });

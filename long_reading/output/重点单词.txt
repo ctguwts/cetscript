@@ -1,0 +1,1 @@
+["fake adj. 假的","prompt v. 促使；导致","warning n. 警示；警告","property n. 房产；所有物","website n. 网站","consumer n. 消费者","deception n. 欺骗；骗局","fraud n. 欺诈；骗子","sophisticated adj. 复杂的","authentic adj. 真正的；真实的","amateur adj. 业余的","reasonable adj. 合理的","suspicion n. 怀疑","invest v. 投资","trustworthy adj. 值得信赖的","spot v. 看见；注意到","transfer n. 转账；转移"]

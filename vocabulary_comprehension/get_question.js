@@ -164,8 +164,8 @@ const getEnglishText = (rawText) => {
     return item.split("[trans]")?.[1];
   });
 
-  //把中文里的[u] [/u] [/trans] (51)全部去掉
-  let regUTransBrackets = /(\[(\/)*u\])|(\[\/trans\])|(（\d*）)/g;
+  //把中文里的[u] [/u] [/trans] (51) (51-2)全部去掉
+  let regUTransBrackets = /(\[(\/)*u\])|(\[\/trans\])|(（\d*\-*\d*）)/g;
   let paragraphChineseWithoutBrackets = paragraphChineseRaw.map((item) => {
     if (item) return item.replace(regUTransBrackets, "");
   });

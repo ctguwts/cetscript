@@ -1,6 +1,6 @@
 var rf = require("fs");
 var fs = require("fs");
-var body = rf.readFileSync("./input/question_body.txt", "utf-8"); //以后直接抓包页面，点击右键，open，newTab，复制过来就是body
+var body = rf.readFileSync("./input/question.txt", "utf-8"); //以后直接抓包页面，点击右键，open，newTab，复制过来就是body
 // var person = data.toString(); //将二进制的数据转换为字符串
 // var dataJson = JSON.parse(person); //将字符串转换为json对象
 // var body = dataJson[0]?.res?.body;
@@ -11,7 +11,7 @@ body = JSON.parse(body);
 let quetsionEnglishArr = []; //题干英文
 let quetsionChineseArr = []; //题干中文
 let optionsArr = []; //题目选项英文
-let optionsArrChinese = []; //题目选项中文
+let optionsArrChinese = []; //题目选项中文(废弃，长篇阅读选项都是字母，没有中文)
 let correctAnswerArr = []; //正确选项
 let questionIndexArr = []; //题目的编号
 let passageAbstract; //文章简介（材料分析）
@@ -57,33 +57,43 @@ importantWord = importantWord.split("\n").filter((item) => {
   return item;
 });
 
-// fs.writeFile(
-//   "./output/题干英文.txt",
-//   JSON.stringify(quetsionEnglishArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/题干中文.txt",
-//   JSON.stringify(quetsionChineseArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/题目选项英文.txt",
-//   JSON.stringify(optionsArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
+console.log("题干英文", quetsionEnglishArr);
+console.log("题干中文", quetsionChineseArr);
+console.log("题目选项英文", optionsArr);
+console.log("题目选项中文", optionsArrChinese);
+console.log("正确答案", correctAnswerArr);
+console.log("题目编号", questionIndexArr);
+console.log("文章简介（材料分析）", passageAbstract);
+console.log("重点单词", importantWord);
+
+fs.writeFile(
+  "./output/题干英文.txt",
+  JSON.stringify(quetsionEnglishArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/题干中文.txt",
+  JSON.stringify(quetsionChineseArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/题目选项英文.txt",
+  JSON.stringify(optionsArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+// 废弃，长篇阅读选项都是字母，没有中文
 // fs.writeFile(
 //   "./output/题目选项中文.txt",
 //   JSON.stringify(optionsArrChinese),
@@ -93,42 +103,42 @@ importantWord = importantWord.split("\n").filter((item) => {
 //     }
 //   }
 // );
-// fs.writeFile(
-//   "./output/正确答案.txt",
-//   JSON.stringify(correctAnswerArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/题目编号.txt",
-//   JSON.stringify(questionIndexArr),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/文章简介（材料分析）.txt",
-//   JSON.stringify(passageAbstract),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
-// fs.writeFile(
-//   "./output/重点单词.txt",
-//   JSON.stringify(importantWord),
-//   function (err) {
-//     if (err) {
-//       return console.error(err);
-//     }
-//   }
-// );
+fs.writeFile(
+  "./output/正确答案.txt",
+  JSON.stringify(correctAnswerArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/题目编号.txt",
+  JSON.stringify(questionIndexArr),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/文章简介（材料分析）.txt",
+  JSON.stringify(passageAbstract),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
+fs.writeFile(
+  "./output/重点单词.txt",
+  JSON.stringify(importantWord),
+  function (err) {
+    if (err) {
+      return console.error(err);
+    }
+  }
+);
 
 //文章的中文和英文
 passageText = body[0].material?.content;
